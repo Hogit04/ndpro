@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 import ndpro.FeedApplication;
-import ndpro.domain.FeedAdd;
 import ndpro.domain.FeedDeleted;
+import ndpro.domain.FeedModified;
 import ndpro.domain.FeedRegistered;
 
 @Entity
@@ -38,8 +38,8 @@ public class Feeding {
         FeedRegistered feedRegistered = new FeedRegistered(this);
         feedRegistered.publishAfterCommit();
 
-        FeedAdd feedAdd = new FeedAdd(this);
-        feedAdd.publishAfterCommit();
+        FeedModified feedModified = new FeedModified(this);
+        feedModified.publishAfterCommit();
 
         FeedDeleted feedDeleted = new FeedDeleted(this);
         feedDeleted.publishAfterCommit();

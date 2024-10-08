@@ -42,7 +42,7 @@
                     text
                     @click="save"
                 >
-                    AddStatic
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"

@@ -44,5 +44,150 @@ public class Static {
         );
         return staticRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public static void addStatic(PetRegistered petRegistered) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Static static = new Static();
+        repository().save(static);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(petRegistered.get???()).ifPresent(static->{
+            
+            static // do something
+            repository().save(static);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void addStatic(PetModified petModified) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Static static = new Static();
+        repository().save(static);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(petModified.get???()).ifPresent(static->{
+            
+            static // do something
+            repository().save(static);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void addStatic(PetDeleted petDeleted) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Static static = new Static();
+        repository().save(static);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(petDeleted.get???()).ifPresent(static->{
+            
+            static // do something
+            repository().save(static);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void addStatic(FeedRegistered feedRegistered) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Static static = new Static();
+        repository().save(static);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(feedRegistered.get???()).ifPresent(static->{
+            
+            static // do something
+            repository().save(static);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void addStatic(FeedModified feedModified) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Static static = new Static();
+        repository().save(static);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(feedModified.get???()).ifPresent(static->{
+            
+            static // do something
+            repository().save(static);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void addStatic(FeedDeleted feedDeleted) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Static static = new Static();
+        repository().save(static);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(feedDeleted.get???()).ifPresent(static->{
+            
+            static // do something
+            repository().save(static);
+
+
+         });
+        */
+
+    }
+    //>>> Clean Arch / Port Method
+
 }
 //>>> DDD / Aggregate Root
