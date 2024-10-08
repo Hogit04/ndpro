@@ -33,22 +33,19 @@ public class Pet {
     private Double strength;
 
     @PostPersist
-    public void onPostPersist() {}
-
-    @PrePersist
-    public void onPrePersist() {
+    public void onPostPersist() {
         PetRegistered petRegistered = new PetRegistered(this);
         petRegistered.publishAfterCommit();
     }
 
-    @PreUpdate
-    public void onPreUpdate() {
+    @PostUpdate
+    public void onPostUpdate() {
         PetModified petModified = new PetModified(this);
         petModified.publishAfterCommit();
     }
 
-    @PreRemove
-    public void onPreRemove() {
+    @PostRemove
+    public void onPostRemove() {
         PetDeleted petDeleted = new PetDeleted(this);
         petDeleted.publishAfterCommit();
     }

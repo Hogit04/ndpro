@@ -31,16 +31,19 @@ public class Feeding {
     private Double strength;
 
     @PostPersist
-    public void onPostPersist() {}
-
-    @PrePersist
-    public void onPrePersist() {
+    public void onPostPersist() {
         FeedRegistered feedRegistered = new FeedRegistered(this);
         feedRegistered.publishAfterCommit();
+    }
 
+    @PostUpdate
+    public void onPostUpdate() {
         FeedModified feedModified = new FeedModified(this);
         feedModified.publishAfterCommit();
+    }
 
+    @PostRemove
+    public void onPostRemove() {
         FeedDeleted feedDeleted = new FeedDeleted(this);
         feedDeleted.publishAfterCommit();
     }
