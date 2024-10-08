@@ -40,21 +40,7 @@
                     text
                     @click="save"
                 >
-                    RegisterFeed
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    AddFeed
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    DeleteFeed
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -76,6 +62,48 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openRegisterFeed"
+            >
+                RegisterFeed
+            </v-btn>
+            <v-dialog v-model="registerFeedDiagram" width="500">
+                <RegisterFeedCommand
+                    @closeDialog="closeRegisterFeed"
+                    @registerFeed="registerFeed"
+                ></RegisterFeedCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openAddFeed"
+            >
+                AddFeed
+            </v-btn>
+            <v-dialog v-model="addFeedDiagram" width="500">
+                <AddFeedCommand
+                    @closeDialog="closeAddFeed"
+                    @addFeed="addFeed"
+                ></AddFeedCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openDeleteFeed"
+            >
+                DeleteFeed
+            </v-btn>
+            <v-dialog v-model="deleteFeedDiagram" width="500">
+                <DeleteFeedCommand
+                    @closeDialog="closeDeleteFeed"
+                    @deleteFeed="deleteFeed"
+                ></DeleteFeedCommand>
+            </v-dialog>
         </v-card-actions>
 
         <v-snackbar
@@ -113,6 +141,9 @@
                 timeout: 5000,
                 text: '',
             },
+            registerFeedDiagram: false,
+            addFeedDiagram: false,
+            deleteFeedDiagram: false,
         }),
 	async created() {
         },
@@ -209,6 +240,69 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async registerFeed() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/registerfeed'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async addFeed() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/addfeed'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async deleteFeed() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/deletefeed'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

@@ -10,9 +10,4 @@ import ndpro.infra.AbstractEvent;
 public class FeedDeleted extends AbstractEvent {
 
     private Long feedingId;
-    private Date feedDate;
-    private Double feedQty;
-    private String foodType;
-    private Double weight;
-    private Double strength;
 }

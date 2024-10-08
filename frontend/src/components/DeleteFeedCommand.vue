@@ -5,6 +5,7 @@
         </v-card-title>
 
         <v-card-text>
+            <Number label="FeedingId" v-model="value.feedingId" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -40,6 +41,7 @@
             value: {},
         }),
         created() {
+            this.value.feedingId = 0;
         },
         watch: {
         },

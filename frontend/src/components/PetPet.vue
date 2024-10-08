@@ -41,21 +41,7 @@
                     text
                     @click="save"
                 >
-                    RegisterPet
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    ModifyPet
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    DeletePet
+                저장
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -77,6 +63,48 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openRegisterPet"
+            >
+                RegisterPet
+            </v-btn>
+            <v-dialog v-model="registerPetDiagram" width="500">
+                <RegisterPetCommand
+                    @closeDialog="closeRegisterPet"
+                    @registerPet="registerPet"
+                ></RegisterPetCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openModifyPet"
+            >
+                ModifyPet
+            </v-btn>
+            <v-dialog v-model="modifyPetDiagram" width="500">
+                <ModifyPetCommand
+                    @closeDialog="closeModifyPet"
+                    @modifyPet="modifyPet"
+                ></ModifyPetCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openDeletePet"
+            >
+                DeletePet
+            </v-btn>
+            <v-dialog v-model="deletePetDiagram" width="500">
+                <DeletePetCommand
+                    @closeDialog="closeDeletePet"
+                    @deletePet="deletePet"
+                ></DeletePetCommand>
+            </v-dialog>
         </v-card-actions>
 
         <v-snackbar
@@ -114,6 +142,9 @@
                 timeout: 5000,
                 text: '',
             },
+            registerPetDiagram: false,
+            modifyPetDiagram: false,
+            deletePetDiagram: false,
         }),
 	async created() {
         },
@@ -210,6 +241,69 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async registerPet() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/registerpet'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async modifyPet() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/modifypet'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async deletePet() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/deletepet'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

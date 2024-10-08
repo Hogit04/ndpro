@@ -54,5 +54,27 @@ public class Feeding {
         );
         return feedingRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public void registerFeed(RegisterFeedCommand registerFeedCommand) {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void addFeed(AddFeedCommand addFeedCommand) {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void deleteFeed(DeleteFeedCommand deleteFeedCommand) {
+        //implement business logic here:
+
+    }
+    //>>> Clean Arch / Port Method
+
 }
 //>>> DDD / Aggregate Root

@@ -56,5 +56,27 @@ public class Pet {
         );
         return petRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public void registerPet(RegisterPetCommand registerPetCommand) {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void modifyPet(ModifyPetCommand modifyPetCommand) {
+        //implement business logic here:
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void deletePet(DeletePetCommand deletePetCommand) {
+        //implement business logic here:
+
+    }
+    //>>> Clean Arch / Port Method
+
 }
 //>>> DDD / Aggregate Root

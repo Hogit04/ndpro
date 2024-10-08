@@ -12,6 +12,22 @@ public class PetHateoasProcessor
 
     @Override
     public EntityModel<Pet> process(EntityModel<Pet> model) {
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "//registerpet")
+                .withRel("/registerpet")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "//modifypet")
+                .withRel("/modifypet")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "//deletepet")
+                .withRel("/deletepet")
+        );
+
         return model;
     }
 }

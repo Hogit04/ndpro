@@ -5,6 +5,13 @@
         </v-card-title>
 
         <v-card-text>
+            <Number label="PetId" v-model="value.petId" :editMode="editMode"/>
+            <String label="UserId" v-model="value.userId" :editMode="editMode"/>
+            <String label="Name" v-model="value.name" :editMode="editMode"/>
+            <Date label="BirthDate" v-model="value.birthDate" :editMode="editMode"/>
+            <Date label="CreateAt" v-model="value.createAt" :editMode="editMode"/>
+            <Number label="Weight" v-model="value.weight" :editMode="editMode"/>
+            <Number label="Strength" v-model="value.strength" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -40,6 +47,13 @@
             value: {},
         }),
         created() {
+            this.value.petId = 0;
+            this.value.userId = '';
+            this.value.name = '';
+            this.value.birthDate = '2024-10-08';
+            this.value.createAt = '2024-10-08';
+            this.value.weight = 0;
+            this.value.strength = 0;
         },
         watch: {
         },

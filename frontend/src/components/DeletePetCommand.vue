@@ -5,6 +5,7 @@
         </v-card-title>
 
         <v-card-text>
+            <Number label="PetId" v-model="value.petId" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -40,6 +41,7 @@
             value: {},
         }),
         created() {
+            this.value.petId = 0;
         },
         watch: {
         },
